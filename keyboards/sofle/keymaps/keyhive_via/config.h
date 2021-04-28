@@ -39,6 +39,13 @@ for more options.
 /*
 #define RGBLIGHT_EFFECT_TWINKLE         // 1156
 */
+
+//Add RGB underglow
+#define RGB_DI_PIN D3
+#define RGBLED_NUM 74
+#define RGBLED_SPLIT {37,37}
+#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_LIMIT_VAL 192
 #endif
 
 // Disabled to save space
