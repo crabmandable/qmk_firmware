@@ -548,6 +548,10 @@ void oled_set_cursor(uint8_t col, uint8_t line) {
     oled_cursor = &oled_buffer[index];
 }
 
+void oled_set_cursor_idx(uint16_t idx) {
+    oled_cursor = &oled_buffer[idx];
+}
+
 void oled_advance_page(bool clearPageRemainder) {
     uint16_t index     = oled_cursor - &oled_buffer[0];
     uint8_t  remaining = oled_rotation_width - (index % oled_rotation_width);

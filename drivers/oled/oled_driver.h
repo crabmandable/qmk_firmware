@@ -364,6 +364,8 @@ void oled_render_dirty(bool all);
 // Max column denoted by 'oled_max_chars()' and max lines by 'oled_max_lines()' functions
 void oled_set_cursor(uint8_t col, uint8_t line);
 
+void oled_set_cursor_idx(uint16_t idx);
+
 // Advances the cursor to the next page, writing ' ' if true
 // Wraps to the beginning when out of bounds
 void oled_advance_page(bool clearPageRemainder);
