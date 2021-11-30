@@ -6,6 +6,8 @@ for more options.
 */
 #define EE_HANDS
 
+#define TAPPING_TERM 200
+
 //Add RGB underglow
 #define RGB_DI_PIN D3
 #define RGBLED_NUM 74
