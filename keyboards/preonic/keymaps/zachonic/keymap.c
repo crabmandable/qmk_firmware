@@ -5,14 +5,12 @@
 enum custom_keycodes {
     Z_ARROW = SAFE_RANGE,
     Z_DOLLAR_CURLY,
-    CAREFUL_RBRC,
 };
 
 #define CAREFUL_TIMEOUT 400
 
 bool lshift = false;
 bool rshift = false;
-bool enter_timeout = false;
 uint16_t enter_timer = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -22,12 +20,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case KC_RSFT:
         rshift = record->event.pressed;
-        break;
-    case LALT_T(KC_ENT):
-        if (record->event.pressed) {
-            enter_timeout = true;
-            enter_timer = timer_read();
-        }
         break;
     case Z_ARROW:
         if (record->event.pressed) {
@@ -39,15 +31,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("${}"SS_TAP(X_LEFT));
         }
         break;
-    case CAREFUL_RBRC:
-        if (record->event.pressed) { 
-            if (!enter_timeout) {
-                register_code(KC_RBRC);
-            }
-        } else {
-            unregister_code(KC_RBRC);
-        }
-        break;
     default:
         break;
     }
@@ -57,14 +40,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 };
-
-void matrix_scan_user(void) {
-  if (enter_timeout) {
-    if (timer_elapsed(enter_timer) > CAREFUL_TIMEOUT) {
-      enter_timeout = false;
-    }
-  }
-}
 
 rgblight_config_t current_config;
 
