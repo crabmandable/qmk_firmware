@@ -193,7 +193,7 @@ static void glitch_swap_chunks(void)
     uint16_t idx2 = idx1 + offset;
     idx2 = idx2 > SCREEN_SIZE - size ? 0 : idx2;
     oled_buffer_reader_t reader = oled_read_raw(0);
-    for (int i = 0; i < size; i++){
+    for (int i = 0; i < size && idx1 + i < SCREEN_SIZE && idx2 + i < SCREEN_SIZE; i++){
         char b1 = *(reader.current_element + idx1 + i);
         char b2 = *(reader.current_element + idx2 + i);
         oled_write_raw_byte(b2, idx1 + i);
@@ -264,13 +264,9 @@ void render_logo(void) {
 
     if (logo_idx < 0) {
         logo_idx = 0;
-        oled_write_raw_P(logo[logo_idx], SCREEN_SIZE);
     }
 
-    if (main_time < 200) {
-        glitch_ripple();
-    }
-    if (main_time >= 200 && main_time < 300) {
+    if (main_time < 300) {
         oled_write_raw_P(logo[logo_idx], SCREEN_SIZE);
     }
 
@@ -326,15 +322,44 @@ static void print_status_narrow(void) {
     }
 }
 
+#define Z_SCREEN_TIMEOUT 40000
+static uint16_t screen_timeout_timer;
+static bool screen_on = true;
+
+void keyboard_post_init_user(void) {
+    screen_timeout_timer = timer_read();
+    screen_on = true;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        screen_timeout_timer = timer_read();
+        if (!screen_on) {
+            screen_on = true;
+            ripple_timer = timer_read();
+            logo_timer = timer_read();
+        }
+    }
+    return true;
+}
+
+
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
 }
 
 void oled_task_user(void) {
-    if (is_keyboard_master()) {
+    if (!is_keyboard_master()) {
         print_status_narrow();
     } else {
-        render_logo();
+        if (screen_on) {
+            if (timer_elapsed(screen_timeout_timer) > Z_SCREEN_TIMEOUT) {
+                screen_on = false;
+                oled_clear();
+            } else {
+                render_logo();
+            }
+        }
     }
 }
 

@@ -7,11 +7,8 @@ enum custom_keycodes {
     Z_DOLLAR_CURLY,
 };
 
-#define CAREFUL_TIMEOUT 400
-
 bool lshift = false;
 bool rshift = false;
-uint16_t enter_timer = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
