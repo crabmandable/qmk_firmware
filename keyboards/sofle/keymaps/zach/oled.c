@@ -322,7 +322,7 @@ static void print_status_narrow(void) {
     }
 }
 
-#define Z_SCREEN_TIMEOUT 40000
+#define Z_SCREEN_TIMEOUT 10000
 static uint16_t screen_timeout_timer;
 static bool screen_on = true;
 

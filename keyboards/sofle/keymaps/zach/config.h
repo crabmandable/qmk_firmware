@@ -6,6 +6,9 @@ for more options.
 */
 #define EE_HANDS
 
+#define SPLIT_LED_STATE_ENABLE
+#define SPLIT_LAYER_STATE_ENABLE
+
 #define TAPPING_TERM 200
 
 //Add RGB underglow
@@ -14,3 +17,5 @@ for more options.
 #define RGBLED_SPLIT {37,37}
 #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_LIMIT_VAL 96
+
+#define LAYER_STATE_8BIT
