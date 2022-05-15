@@ -19,7 +19,7 @@
 
 #include <string.h>
 
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 
 #define SCREEN_SIZE 512
 
@@ -348,7 +348,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
     if (!is_keyboard_master()) {
         print_status_narrow();
     } else {
@@ -361,6 +361,7 @@ void oled_task_user(void) {
             }
         }
     }
+    return false;
 }
 
 #endif
