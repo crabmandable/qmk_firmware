@@ -10,6 +10,7 @@ for more options.
 #define SPLIT_LAYER_STATE_ENABLE
 
 #define TAPPING_TERM 200
+#define OLED_UPDATE_INTERVAL 10
 
 //Add RGB underglow
 #define RGB_DI_PIN D3
