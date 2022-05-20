@@ -2,6 +2,12 @@
 
 #define RGBLIGHT_LAYERS
 
+#include "muse.h"
+#ifdef AUDIO_ENABLE
+#include "audio.h"
+float tone_startup[][2]         = SONG(STARTUP_SOUND);
+#endif
+
 enum custom_keycodes {
     Z_ARROW = SAFE_RANGE,
     Z_DOLLAR_CURLY,
@@ -95,13 +101,17 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-// this is supposed to automatically enable numlock on start
-// doesnt work though :(
 void matrix_init_user(void) {
+    // this is supposed to automatically enable numlock on start
+    // doesnt work though :(
     if (!(host_keyboard_leds() & (1<<USB_LED_NUM_LOCK))) {
         register_code(KC_NUMLOCK);
         unregister_code(KC_NUMLOCK);
     }
+
+    #ifdef AUDIO_ENABLE
+        PLAY_SONG(tone_startup);
+    #endif
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
