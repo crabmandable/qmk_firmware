@@ -12,15 +12,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    TG(2),             KC_MUTE,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LGUI, LALT_T(KC_ENT),OSL(1),              KC_SPC,  KC_ESC,   KC_RCTL
+                                    KC_LGUI, LALT_T(KC_ENT),OSL(1),              KC_SPC,  KC_ESC,   KC_RGUI
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
   [1] = LAYOUT(
             KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,                     /*|||*/       KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12,
-            KC_TRNS, KC_CIRC, KC_TRNS, KC_HASH, KC_ASTR, KC_DLR,          /*|||*/       KC_HOME, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, KC_DEL,
+            KC_TRNS, KC_CIRC, KC_EXLM, KC_HASH, KC_ASTR, KC_DLR,          /*|||*/       KC_HOME, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, KC_DEL,
             KC_TRNS, KC_AMPR, KC_BSLS, KC_LPRN, KC_RPRN, KC_SLSH,         /*|||*/       KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_TRNS, KC_TRNS,
-            KC_TRNS, KC_TRNS, KC_TRNS, KC_GRV, KC_PIPE, KC_TILD, KC_TRNS, /*|||*/ KC_TRNS, KC_END, KC_PGDN, KC_PGUP, KC_TRNS, KC_TRNS, KC_TRNS,
+            KC_TRNS, KC_AT, KC_TRNS, KC_GRV, KC_PIPE, KC_TILD, KC_TRNS, /*|||*/ KC_TRNS, KC_END, KC_PGDN, KC_PGUP, KC_TRNS, KC_TRNS, KC_TRNS,
                                                  KC_TRNS, KC_TRNS, KC_TRNS, /*|||*/ KC_TRNS, KC_TRNS, KC_TRNS
   ),
 
