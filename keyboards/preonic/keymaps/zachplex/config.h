@@ -23,7 +23,6 @@
 #endif
 #define MUSIC_MASK (keycode != KC_NO)
 
-#define TAPPING_TERM 180
-#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM 200
 /* #define PERMISSIVE_HOLD */
 #undef HOLD_ON_OTHER_KEY_PRESS
